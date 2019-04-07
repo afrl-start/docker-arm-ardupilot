@@ -43,9 +43,7 @@ RUN cd /tmp \
 RUN pip install --no-cache-dir --upgrade pip==9.0.3 \
  && pip install --user --no-cache-dir setuptools wheel \
  && pip install --user --no-cache-dir \
-      matplotlib \
       pyserial \
-      scipy \
       pexpect \
       future \
       mavproxy \
