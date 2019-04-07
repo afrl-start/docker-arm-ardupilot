@@ -25,3 +25,15 @@ RUN apt-get update \
       wget \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# install bear
+RUN cd /tmp \
+ && wget -nv https://github.com/rizsotto/Bear/archive/2.3.11.tar.gz \
+ && tar -xf 2.3.11.tar.gz \
+ && cd Bear-2.3.11 \
+ && mkdir build \
+ && cd build \
+ && cmake .. \
+ && make all \
+ && make install \
+ && rm -rf /tmp/*
