@@ -62,7 +62,7 @@ RUN mkdir -p /opt \
  && git checkout "${VERSION}" \
  && ./waf configure \
  && ./waf configure \
- && bear ./waf build -j4
+ && bear ./waf build -j2
 COPY copter.parm /opt/ardupilot/copter.parm
 
 ENV PATH "${PATH}:/opt/ardupilot/Tools/autotest"
