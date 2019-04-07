@@ -37,3 +37,16 @@ RUN cd /tmp \
  && make all \
  && make install \
  && rm -rf /tmp/*
+
+# install python packages
+RUN pip install --no-cache-dir --upgrade pip==9.0.3 \
+ && pip install --user --no-cache-dir setuptools wheel \
+ && pip install --user --no-cache-dir \
+      matplotlib \
+      pyserial \
+      scipy \
+      pexpect \
+      future \
+      mavproxy \
+      gcovr \
+      pymavlink==2.2.10
