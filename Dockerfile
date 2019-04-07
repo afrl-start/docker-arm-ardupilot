@@ -66,3 +66,15 @@ RUN mkdir -p /opt \
 COPY copter.parm /opt/ardupilot/copter.parm
 
 ENV PATH "${PATH}:/opt/ardupilot/Tools/autotest"
+
+# Unfortunately, we need to build Dronekit from source to avoid the
+# dependency hell created by the latest stable release on PyPI.
+RUN git clone https://github.com/dronekit/dronekit-python /tmp/dronekit \
+ && git clone https://github.com/dronekit/dronekit-sitl /tmp/dronekit-sitl \
+ && cd /tmp/dronekit \
+ && git checkout a20eadf92b5d30940a7533a8a57a39273cdf3938 \
+ && pip install --no-cache-dir . \
+ && cd /tmp/dronekit-sitl \
+ && git checkout 9a2d6592f7844d7df17d417cd33a9de8386cdaae \
+ && pip install --no-cache-dir . \
+ && rm -rf /tmp/*
