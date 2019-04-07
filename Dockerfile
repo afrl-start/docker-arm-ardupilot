@@ -19,6 +19,7 @@ RUN apt-get update \
       liblapack-dev \
       make \
       openssl \
+      pkg-config \
       python \
       python-pip \
       python-dev \
