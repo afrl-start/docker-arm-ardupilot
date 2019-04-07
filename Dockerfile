@@ -1,3 +1,7 @@
+# Parameters
+# ----------
+# VERSION: the GitHub release/tag/commit of ArduPilot that should be built.
+#
 FROM arm32v7/ubuntu:16.04
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -50,13 +54,12 @@ RUN pip install --no-cache-dir --upgrade pip==9.0.3 \
       gcovr \
       pymavlink==2.2.10
 
-# Copter-3.6.4
-# TODO use build arg
+ARG VERSION
 WORKDIR /opt/ardupilot
 RUN mkdir -p /opt \
  && git clone https://github.com/ArduPilot/ardupilot /opt/ardupilot \
  && cd /opt/ardupilot \
- && git checkout Copter-3.6.4 \
+ && git checkout "${VERSION}" \
  && ./waf configure \
  && ./waf configure \
- && bear ./waf build -j8
+ && bear ./waf build -j4
