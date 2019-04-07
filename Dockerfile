@@ -49,3 +49,14 @@ RUN pip install --no-cache-dir --upgrade pip==9.0.3 \
       mavproxy \
       gcovr \
       pymavlink==2.2.10
+
+# Copter-3.6.4
+# TODO use build arg
+WORKDIR /opt/ardupilot
+RUN mkdir -p /opt \
+ && git clone https://github.com/ArduPilot/ardupilot /opt/ardupilot \
+ && cd /opt/ardupilot \
+ && git checkout Copter-3.6.4 \
+ && ./waf configure \
+ && ./waf configure \
+ && bear ./waf build -j8
